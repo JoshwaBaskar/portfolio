@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Joshwa B | Full Stack Developer & AI/ML Enthusiast</title>
+<meta name="description" content="Joshwa B - Full Stack Developer and AI & Machine Learning Enthusiast building intelligent web applications with Java, Spring Boot, React, and Cloud technologies.">
+<meta property="og:title" content="Joshwa B | Full Stack Developer & AI/ML Enthusiast">
+<meta property="og:description" content="Portfolio of Joshwa B — Full Stack Developer specializing in Java, Spring Boot, React, AI, and Cloud.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Joshwa B | Full Stack Developer">
+<meta name="twitter:description" content="Portfolio of Joshwa B — Full Stack Developer & AI/ML Enthusiast.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>J</text></svg>">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config={theme:{extend:{fontFamily:{display:['Outfit','sans-serif'],body:['Space Grotesk','sans-serif']}}}}
+</script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{background:#030712;color:#f9fafb;font-family:'Space Grotesk',sans-serif;overflow-x:hidden}
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:#030712}
+::-webkit-scrollbar-thumb{background:#10b981;border-radius:3px}
+::selection{background:#10b981;color:#030712}
+.scroll-reveal{opacity:0;transform:translateY(30px);transition:opacity .7s cubic-bezier(.23,1,.32,1),transform .7s cubic-bezier(.23,1,.32,1)}
+.scroll-reveal.revealed{opacity:1;transform:translateY(0)}
+@keyframes float{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-20px) rotate(3deg)}}
+@keyframes blob{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(30px,-50px) scale(1.1)}66%{transform:translate(-20px,20px) scale(.9)}}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+@keyframes pulse-glow{0%,100%{box-shadow:0 0 20px rgba(16,185,129,.15)}50%{box-shadow:0 0 40px rgba(16,185,129,.3)}}
+@keyframes gradient-x{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+@keyframes slide-in-left{from{opacity:0;transform:translateX(-30px)}to{opacity:1;transform:translateX(0)}}
+@keyframes count-up{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.anim-float{animation:float 6s ease-in-out infinite}
+.anim-blob{animation:blob 8s ease-in-out infinite}
+.anim-blink{animation:blink 1s step-end infinite}
+.anim-pulse-glow{animation:pulse-glow 3s ease-in-out infinite}
+.anim-gradient{background-size:200% 200%;animation:gradient-x 4s ease infinite}
+.blob-d1{animation-delay:0s}
+.blob-d2{animation-delay:2s}
+.blob-d3{animation-delay:4s}
+.glass{background:rgba(255,255,255,.03);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.06)}
+.glass-strong{background:rgba(255,255,255,.06);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border:1px solid rgba(255,255,255,.1)}
+.contrib-cell{width:12px;height:12px;border-radius:2px;transition:transform .2s}
+.contrib-cell:hover{transform:scale(1.8)}
+.timeline-line{position:absolute;left:50%;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,transparent,#10b981,transparent);transform:translateX(-50%)}
+@media(max-width:768px){.timeline-line{left:20px}}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+<script>
+(function(){
+"use strict";
+var h=React.createElement;
+var useState=React.useState;
+var useEffect=React.useEffect;
+var useRef=React.useRef;
+var useCallback=React.useCallback;
+
+/* ===== SECTION IDS ===== */
+var SECTION_IDS=['home','about','skills','projects','education','certifications','achievements','timeline','experience','contact'];
+
+/* ===== DATA ===== */
+var SKILL_CATS=[
+{name:'Programming',icon:'fa-solid fa-code',items:['Java','Python','C','JavaScript']},
+{name:'Frontend',icon:'fa-solid fa-palette',items:['React','HTML','CSS','Tailwind CSS','Bootstrap']},
+{name:'Backend',icon:'fa-solid fa-server',items:['Spring Boot','REST API','JWT Authentication']},
+{name:'Database',icon:'fa-solid fa-database',items:['MySQL','MongoDB','SQLite']},
+{name:'Machine Learning',icon:'fa-solid fa-brain',items:['TensorFlow','Scikit-learn','Pandas','NumPy']},
+{name:'Tools',icon:'fa-solid fa-wrench',items:['Git','GitHub','Docker','Swagger','VS Code','Postman']},
+{name:'Cloud',icon:'fa-solid fa-cloud',items:['AWS Basics','Azure Basics']}
+];
+var PROJECTS=[
+{title:'Employee Management System',desc:'Developed a secure Full Stack Employee Management System using Spring Boot, React, MySQL, JWT Authentication, Docker, and Swagger.',features:['Role-based Authentication','CRUD Operations','REST APIs','Responsive UI','JWT Login','Dockerized Application','Swagger Documentation'],tech:['React','Spring Boot','MySQL','JWT','Docker','Swagger'],cls:'emerald'},
+{title:'Hire Sense AI',desc:'An AI-powered Resume Screening and Candidate Matching platform.',features:['Resume Parsing','ATS Score','Skill Extraction','AI Recommendations','Candidate Dashboard','Recruiter Dashboard','Authentication','Vector Database Integration','Google Gemini API'],tech:['React','FastAPI','MongoDB','JWT','Google Gemini','ChromaDB','Vector Search'],cls:'cyan'},
+{title:'Online Payment Fraud Detection',desc:'Machine Learning project that detects fraudulent online payment transactions.',features:['Data Analysis','Fraud Prediction','ML Model','Visualization'],tech:['Python','Scikit-learn','Pandas','NumPy'],cls:'amber'},
+{title:'Digital Complaint Management System',desc:'A web-based complaint tracking system that allows users to register complaints while administrators manage and resolve them efficiently.',features:['User Registration','Complaint Submission','Admin Dashboard','Status Tracking','Resolution Workflow'],tech:['React','Spring Boot','MySQL','REST API'],cls:'rose'}
+];
+var TIMELINE_DATA=[
+{year:'2022',title:'Learning Programming',desc:'Started with C and Python fundamentals, building a solid foundation in logic and problem-solving.'},
+{year:'2023',title:'Java Development',desc:'Deep dive into Java, OOP concepts, data structures, and algorithms. Built console applications.'},
+{year:'2023',title:'Machine Learning',desc:'Explored ML algorithms, data preprocessing, and model evaluation with Python and scikit-learn.'},
+{year:'2024',title:'Full Stack Development',desc:'Built full stack applications with Spring Boot backend and React frontend, deploying with Docker.'},
+{year:'2024',title:'Cloud Learning',desc:'AWS and Azure fundamentals, containerization with Docker, and CI/CD pipeline concepts.'},
+{year:'2025',title:'AI Projects',desc:'AI-powered applications with Google Gemini API, vector databases, and intelligent resume screening.'}
+];
+var FAQ_DATA=[
+{q:'What technologies do you specialize in?',a:'I specialize in Java, Spring Boot, React, MySQL, and Machine Learning technologies including TensorFlow and Scikit-learn. I also have experience with Docker, AWS, and Azure.'},
+{q:'Are you available for freelance work?',a:'Yes, I am open to freelance opportunities and collaborations on interesting full stack or AI-related projects.'},
+{q:'What is your approach to learning new technologies?',a:'I follow a hands-on approach — building projects while learning. I leverage online courses, official documentation, and open-source contributions to deepen my understanding.'},
+{q:'Can you work in a team environment?',a:'Absolutely. I have experience working in team settings during hackathons, internships at Intrainz and NSIC, and college projects including coordinating a cultural fest.'},
+{q:'How can I contact you?',a:'You can reach me through the contact form below, or directly via email at joshwavsb@gmail.com. I typically respond within 24 hours.'},
+{q:'What are your career goals?',a:'I aim to grow as a Software Developer working on production-grade applications, combining my full stack skills with AI/ML to build intelligent, scalable systems.'}
+];
+var STATS_DATA=[
+{value:3,label:'Years Learning',suffix:'+'},
+{value:4,label:'Projects Built',suffix:'+'},
+{value:15,label:'Technologies',suffix:'+'},
+{value:4,label:'Certificates',suffix:'+'}
+];
+var SOCIAL_LINKS=[
+{icon:'fa-brands fa-github',href:'https://github.com/JoshwaBaskar',label:'GitHub'},
+{icon:'fa-brands fa-linkedin-in',href:'https://linkedin.com/in/joshwa-b-322967291',label:'LinkedIn'},
+{icon:'fa-solid fa-envelope',href:'mailto:joshwavsb@gmail.com',label:'Email'},
+{icon:'fa-brands fa-leetcode',href:'https://leetcode.com/',label:'LeetCode'}
+];
+
+/* ===== CUSTOM HOOKS ===== */
+function useTypingEffect(strings,speed,delSpeed,pause){
+var ts=useState(''),text=ts[0],setText=ts[1];
+var is=useState(0),idx=is[0],setIdx=is[1];
+var ds=useState(false),del=ds[0],setDel=ds[1];
+speed=speed||80;delSpeed=delSpeed||40;pause=pause||2000;
+useEffect(function(){
+var cur=strings[idx];var t;
+if(!del&&text===cur){t=setTimeout(function(){setDel(true)},pause)}
+else if(del&&text===''){setDel(false);setIdx(function(p){return(p+1)%strings.length})}
+else{t=setTimeout(function(){setText(function(p){return del?p.substring(0,p.length-1):cur.substring(0,p.length+1)})},del?delSpeed:speed)}
+return function(){clearTimeout(t)}
+},[text,idx,del]);
+return text;
+}
+function useActiveSection(ids){
+var as=useState(''),active=as[0],setActive=as[1];
+useEffect(function(){
+var obs=ids.map(function(id){
+var el=document.getElementById(id);if(!el)return null;
+var o=new IntersectionObserver(function(e){if(e[0].isIntersecting)setActive(id)},{threshold:.25,rootMargin:'-80px 0px 0px 0px'});
+o.observe(el);return o});
+return function(){obs.forEach(function(o){if(o)o.disconnect()})}
+},[]);
+return active;
+}
+
+/* ===== REUSABLE COMPONENTS ===== */
+function Reveal(props){
+var ref=useRef(null);
+useEffect(function(){
+var el=ref.current;if(!el)return;
+var o=new IntersectionObserver(function(e){if(e[0].isIntersecting){el.classList.add('revealed');o.unobserve(el)}},{threshold:.08});
+o.observe(el);return function(){o.disconnect()}
+},[]);
+var cls=(props.className||'')+' scroll-reveal';
+var style=props.style||{};
+if(props.delay)style.transitionDelay=props.delay+'s';
+return h(props.tag||'div',{ref:ref,className:cls,style:style},props.children);
+}
+function SectionWrap(id,extra,children){
+return h('section',{id:id,className:'py-20 md:py-28 relative '+(extra||'')},children);
+}
+function SectionHead(label,title,sub){
+return h('div',{className:'text-center mb-16'},
+h('span',{className:'text-emerald-400 font-semibold text-sm tracking-[.2em] uppercase'},label),
+h('h2',{className:'font-display text-3xl sm:text-4xl md:text-5xl font-extrabold mt-3 mb-4 text-white'},title),
+sub?h('p',{className:'text-gray-400 max-w-2xl mx-auto leading-relaxed'},sub):null
+);
+}
+function GlassCard(cls,children){
+return h('div',{className:'glass rounded-2xl p-6 '+(cls||'')},children);
+}
+function StatCounter(props){
+var ref=useRef(null);
+var cs=useState(0),count=cs[0],setCount=cs[1];
+var ss=useState(false),started=ss[0],setStarted=ss[1];
+useEffect(function(){
+var el=ref.current;if(!el)return;
+var o=new IntersectionObserver(function(e){if(e[0].isIntersecting){setStarted(true);o.unobserve(el)}},{threshold:.5});
+o.observe(el);return function(){o.disconnect()}
+},[]);
+useEffect(function(){
+if(!started)return;var st=performance.now();
+function u(now){var p=Math.min((now-st)/2000,1);var e=1-Math.pow(1-p,3);setCount(Math.floor(e*props.value));if(p<1)requestAnimationFrame(u)}
+requestAnimationFrame(u);
+},[started,props.value]);
+return h('div',{ref:ref,className:'text-center'},
+h('div',{className:'text-4xl md:text-5xl font-extrabold text-emerald-400 mb-2 font-display'},count+(props.suffix||'')),
+h('div',{className:'text-gray-400 text-sm'},props.label)
+);
+}
+
+/* ===== NAVBAR ===== */
+function Navbar(){
+var os=useState(false),open=os[0],setOpen=os[1];
+var ss=useState(false),scrolled=ss[0],setScrolled=ss[1];
+var active=useActiveSection(SECTION_IDS);
+var links=[
+{id:'home',label:'Home'},{id:'about',label:'About'},{id:'skills',label:'Skills'},
+{id:'projects',label:'Projects'},{id:'education',label:'Education'},{id:'contact',label:'Contact'}
+];
+useEffect(function(){
+function onS(){setScrolled(window.scrollY>50)}
+window.addEventListener('scroll',onS);return function(){window.removeEventListener('scroll',onS)}
+},[]);
+function go(id,e){e.preventDefault();document.getElementById(id).scrollIntoView({behavior:'smooth'});setOpen(false)}
+var navCls='fixed top-0 left-0 right-0 z-50 transition-all duration-300 '+(scrolled?'bg-gray-950/80 backdrop-blur-xl border-b border-white/5 py-3':'py-5');
+return h('nav',{className:navCls},
+h('div',{className:'max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between'},
+h('a',{href:'#home',onClick:function(e){go('home',e)},className:'text-xl font-bold font-display text-white'},
+h('span',{className:'text-emerald-400'},'J'),'oshwa'),
+h('div',{className:'hidden lg:flex items-center gap-8'},
+links.map(function(l){
+return h('a',{key:l.id,href:'#'+l.id,onClick:function(e){go(l.id,e)},
+className:'text-sm font-medium transition-colors '+(active===l.id?'text-emerald-400':'text-gray-400 hover:text-white')},l.label)
+})),
+h('a',{href:'#contact',onClick:function(e){go('contact',e)},
+className:'hidden lg:inline-flex px-5 py-2.5 bg-emerald-500 hover:bg-emerald-400 text-gray-950 font-semibold text-sm rounded-xl transition-all hover:shadow-lg hover:shadow-emerald-500/20'},'Hire Me'),
+h('button',{className:'lg:hidden text-white text-xl focus:outline-none','aria-label':'Toggle menu',onClick:function(){setOpen(!open)}},
+open?h('i',{className:'fas fa-times'}):h('i',{className:'fas fa-bars'}))
+),
+open?h('div',{className:'lg:hidden bg-gray-950/95 backdrop-blur-xl border-b border-white/5 px-4 pb-6 pt-2'},
+links.map(function(l){
+return h('a',{key:l.id,href:'#'+l.id,onClick:function(e){go(l.id,e)},
+className:'block py-3 text-sm font-medium border-b border-white/5 '+(active===l.id?'text-emerald-400':'text-gray-400')},l.label)
+}),
+h('a',{href:'#contact',onClick:function(e){go('contact',e)},
+className:'inline-flex mt-4 px-5 py-2.5 bg-emerald-500 text-gray-950 font-semibold text-sm rounded-xl'},'Hire Me')
+):null
+);
+}
+
+/* ===== HERO ===== */
+function Hero(){
+var typed=useTypingEffect(['Full Stack Developer','AI & Machine Learning Enthusiast','Java & Spring Boot Developer','React Frontend Developer']);
+var floats=[
+{icon:'fa-brands fa-java',top:'15%',left:'8%',d:'0s'},
+{icon:'fa-brands fa-react',top:'25%',right:'10%',d:'1s'},
+{icon:'fa-brands fa-python',bottom:'30%',left:'5%',d:'2s'},
+{icon:'fa-solid fa-database',bottom:'20%',right:'8%',d:'.5s'},
+{icon:'fa-brands fa-docker',top:'60%',left:'12%',d:'1.5s'},
+{icon:'fa-solid fa-brain',top:'10%',right:'20%',d:'2.5s'}
+];
+return h('section',{id:'home',className:'min-h-screen flex items-center justify-center relative overflow-hidden'},
+h('div',{className:'absolute top-1/4 -left-32 w-96 h-96 bg-emerald-500/20 rounded-full blur-[128px] anim-blob blob-d1'}),
+h('div',{className:'absolute bottom-1/4 -right-32 w-96 h-96 bg-cyan-500/15 rounded-full blur-[128px] anim-blob blob-d2'}),
+h('div',{className:'absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-amber-500/10 rounded-full blur-[128px] anim-blob blob-d3'}),
+h('div',{className:'absolute inset-0',style:{backgroundImage:'linear-gradient(rgba(255,255,255,.015) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.015) 1px, transparent 1px)',backgroundSize:'64px 64px'}}),
+floats.map(function(f,i){
+var s={};if(f.top)s.top=f.top;if(f.bottom)s.bottom=f.bottom;if(f.left)s.left=f.left;if(f.right)s.right=f.right;s.animationDelay=f.d;
+return h('div',{key:i,className:'absolute text-emerald-500/15 text-2xl anim-float hidden lg:block',style:s},h('i',{className:f.icon}))
+}),
+h('div',{className:'relative z-10 text-center px-4 max-w-4xl mx-auto'},
+h('div',{className:'inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-sm font-medium mb-8'},
+h('span',{className:'w-2 h-2 rounded-full bg-emerald-400 animate-pulse'}),'Available for opportunities'),
+h('h1',{className:'font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold text-white mb-6 leading-tight'},
+'Hi, I\'m ',h('span',{className:'bg-gradient-to-r from-emerald-400 via-cyan-400 to-amber-400 bg-clip-text text-transparent'},'Joshwa B')),
+h('div',{className:'text-xl sm:text-2xl md:text-3xl text-gray-300 font-light mb-6 h-10'},
+h('span',null,typed),h('span',{className:'inline-block w-0.5 h-7 bg-emerald-400 anim-blink ml-1 align-middle'})),
+h('p',{className:'text-gray-400 text-base sm:text-lg max-w-2xl mx-auto mb-10 leading-relaxed'},'I build intelligent web applications using Java, Spring Boot, React, AI, and Cloud technologies.'),
+h('div',{className:'flex flex-wrap justify-center gap-4 mb-12'},
+h('a',{href:'#',className:'px-7 py-3.5 bg-emerald-500 hover:bg-emerald-400 text-gray-950 font-semibold rounded-xl transition-all hover:shadow-lg hover:shadow-emerald-500/25 hover:-translate-y-0.5'},
+h('i',{className:'fas fa-download mr-2'}),'Download Resume'),
+h('a',{href:'#projects',onClick:function(e){e.preventDefault();document.getElementById('projects').scrollIntoView({behavior:'smooth'})},className:'px-7 py-3.5 border border-emerald-500/30 text-emerald-400 hover:bg-emerald-500/10 font-semibold rounded-xl transition-all hover:-translate-y-0.5'},h('i',{className:'fas fa-eye mr-2'}),'View Projects'),
+h('a',{href:'#contact',onClick:function(e){e.preventDefault();document.getElementById('contact').scrollIntoView({behavior:'smooth'})},className:'px-7 py-3.5 border border-white/10 text-gray-300 hover:text-white hover:border-white/30 font-semibold rounded-xl transition-all hover:-translate-y-0.5'},h('i',{className:'fas fa-handshake mr-2'}),'Hire Me')),
+h('div',{className:'flex justify-center gap-4'},
+SOCIAL_LINKS.map(function(s,i){
+return h('a',{key:i,href:s.href,target:'_blank',rel:'noopener noreferrer','aria-label':s.label,
+className:'w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-emerald-400 hover:border-emerald-500/30 hover:bg-emerald-500/5 transition-all hover:-translate-y-1'},h('i',{className:s.icon}))
+})),
+h('div',{className:'absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-gray-500'},
+h('span',{className:'text-xs tracking-[.2em] uppercase'},'Scroll'),
+h('div',{className:'w-5 h-8 rounded-full border border-gray-600 flex justify-center pt-1.5'},
+h('div',{className:'w-1 h-2 bg-emerald-400 rounded-full animate-bounce'})))
+);
+}
+
+/* ===== ABOUT ===== */
+function About(){
+return SectionWrap('about','bg-gray-950',
+h('div',{className:'max-w-6xl mx-auto px-4 sm:px-6'},
+SectionHead('About Me','Building the Future with Code','Passionate about creating intelligent, scalable software solutions.'),
+h('div',{className:'grid md:grid-cols-2 gap-12 items-center'},
+h(Reveal,{delay:0},
+h('div',{className:'relative'},
+h('div',{className:'w-full aspect-square max-w-md mx-auto rounded-2xl overflow-hidden border border-white/10'},
+h('div',{className:'w-full h-full bg-gradient-to-br from-emerald-500/20 via-cyan-500/10 to-amber-500/10 flex items-center justify-center'},
+h('div',{className:'text-center'},
+h('i',{className:'fas fa-laptop-code text-6xl text-emerald-400 mb-4'}),
+h('p',{className:'text-gray-400 text-sm'},'Full Stack Developer')
+))
+),
+h('div',{className:'absolute -bottom-4 -right-4 w-24 h-24 bg-emerald-500/10 rounded-2xl border border-emerald-500/20 anim-pulse-glow'}),
+h('div',{className:'absolute -top-4 -left-4 w-16 h-16 bg-cyan-500/10 rounded-xl border border-cyan-500/20'})
+)),
+h('div',null,
+h(Reveal,{delay:.1},
+h('p',{className:'text-gray-300 text-lg leading-relaxed mb-6'},'I am a Computer Science Engineering (AI & ML) student passionate about Full Stack Development, Artificial Intelligence, and scalable software solutions.'),
+h('p',{className:'text-gray-400 leading-relaxed mb-6'},'I enjoy building secure, responsive, and AI-powered applications using modern technologies.'),
+h('p',{className:'text-gray-400 leading-relaxed mb-8'},'I continuously improve my skills in Java, Spring Boot, React, SQL, Machine Learning, Docker, Cloud, and System Design.')),
+h(Reveal,{delay:.2},
+h('div',{className:'grid grid-cols-2 gap-4'},
+[{l:'Location',v:'Kovilpatti, TN'},{l:'Email',v:'joshwavsb@gmail.com'},{l:'Degree',v:'B.E. CSE (AI&ML)'},{l:'Graduation',v:'2027'}].map(function(item,i){
+return h('div',{key:i,className:'glass rounded-xl p-4'},
+h('div',{className:'text-emerald-400 text-xs font-semibold uppercase tracking-wider mb-1'},item.l),
+h('div',{className:'text-white text-sm font-medium'},item.v))
+})))
+)))
+);
+}
+
+/* ===== SKILLS ===== */
+function Skills(){
+var cs=useState(0),cat=cs[0],setCat=cs[1];
+return SectionWrap('skills','bg-gradient-to-b from-gray-950 to-gray-900/50',
+h('div',{className:'max-w-6xl mx-auto px-4 sm:px-6'},
+SectionHead('Skills','Technical Arsenal','Technologies and tools I work with daily.'),
+h(Reveal,{delay:0},
+h('div',{className:'flex flex-wrap justify-center gap-2 mb-12'},
+SKILL_CATS.map(function(sc,i){
+return h('button',{key:i,onClick:function(){setCat(i)},
+className:'px-4 py-2.5 rounded-xl text-sm font-medium transition-all '+(cat===i?'bg-emerald-500 text-gray-950 shadow-lg shadow-emerald-500/20':'bg-white/5 text-gray-400 hover:text-white border border-white/10 hover:border-white/20')},
+h('i',{className:(sc.icon)+' mr-2'}),sc.name)
+}))),
+h(Reveal,{delay:.1},
+h('div',{className:'grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 max-w-4xl mx-auto',key:'sk-'+cat},
+SKILL_CATS[cat].items.map(function(sk,i){
+return h('div',{key:sk,
+className:'glass rounded-xl p-5 text-center text-gray-300 hover:text-emerald-400 hover:border-emerald-500/30 transition-all hover:-translate-y-1 cursor-default group',
+style:{transitionDelay:(i*0.05)+'s'}},
+h('div',{className:'text-2xl mb-2 group-hover:scale-110 transition-transform'},h('i',{className:SKILL_CATS[cat].icon})),
+h('div',{className:'text-sm font-medium'},sk))
+})))
+));
+}
+
+/* ===== STATS ===== */
+function Stats(){
+return h('section',{className:'py-16 relative'},
+h('div',{className:'absolute inset-0 bg-gradient-to-r from-emerald-500/5 via-cyan-500/5 to-amber-500/5'}),
+h('div',{className:'max-w-5xl mx-auto px-4 sm:px-6 relative'},
+h('div',{className:'glass-strong rounded-2xl p-8 md:p-12'},
+h('div',{className:'grid grid-cols-2 md:grid-cols-4 gap-8'},
+STATS_DATA.map(function(s,i){return h(StatCounter,Object.assign({key:i},s))})
+))))
+);
+}
+
+/* ===== PROJECTS ===== */
+function ProjectCard(props){
+var p=props.project;var idx=props.index;
+var styles=[
+{card:'hover:border-emerald-500/30 hover:shadow-emerald-500/5',accent:'from-emerald-500 to-emerald-300',check:'text-emerald-400',tag:'bg-emerald-500/10 text-emerald-400 border-emerald-500/20',hover:'group-hover:text-emerald-400'},
+{card:'hover:border-cyan-500/30 hover:shadow-cyan-500/5',accent:'from-cyan-500 to-cyan-300',check:'text-cyan-400',tag:'bg-cyan-500/10 text-cyan-400 border-cyan-500/20',hover:'group-hover:text-cyan-400'},
+{card:'hover:border-amber-500/30 hover:shadow-amber-500/5',accent:'from-amber-500 to-amber-300',check:'text-amber-400',tag:'bg-amber-500/10 text-amber-400 border-amber-500/20',hover:'group-hover:text-amber-400'},
+{card:'hover:border-rose-500/30 hover:shadow-rose-500/5',accent:'from-rose-500 to-rose-300',check:'text-rose-400',tag:'bg-rose-500/10 text-rose-400 border-rose-500/20',hover:'group-hover:text-rose-400'}
+];
+var s=styles[idx%4];
+return h(Reveal,{delay:(idx*0.1),className:'group glass rounded-2xl overflow-hidden '+s.card+' transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl'},
+h('div',{className:'h-1 bg-gradient-to-r '+s.accent}),
+h('div',{className:'p-6'},
+h('h3',{className:'text-xl font-bold text-white mb-3 font-display '+s.hover+' transition-colors'},p.title),
+h('p',{className:'text-gray-400 text-sm mb-5 leading-relaxed'},p.desc),
+h('div',{className:'mb-5'},
+h('h4',{className:'text-xs font-semibold uppercase tracking-wider text-gray-500 mb-3'},'Key Features'),
+h('ul',{className:'space-y-2'},
+p.features.map(function(f,fi){
+return h('li',{key:fi,className:'flex items-start gap-2.5 text-sm text-gray-400'},
+h('i',{className:'fas fa-check '+s.check+' text-xs mt-1 flex-shrink-0'}),f)
+}))),
+h('div',{className:'flex flex-wrap gap-2'},
+p.tech.map(function(t,ti){
+return h('span',{key:ti,className:'px-3 py-1 text-xs font-medium rounded-lg border '+s.tag},t)
+})))
+);
+}
+function Projects(){
+return SectionWrap('projects','bg-gray-950',
+h('div',{className:'max-w-6xl mx-auto px-4 sm:px-6'},
+SectionHead('Projects','Featured Work','A selection of projects that showcase my skills and experience.'),
+h('div',{className:'grid md:grid-cols-2 gap-6'},
+PROJECTS.map(function(p,i){return h(ProjectCard,{project:p,index:i,key:i})}))
+));
+}
+
+/* ===== EDUCATION ===== */
+function Education(){
+return SectionWrap('education','bg-gradient-to-b from-gray-950 to-gray-900/50',
+h('div',{className:'max-w-4xl mx-auto px-4 sm:px-6'},
+SectionHead('Education','Academic Background','My educational journey in Computer Science Engineering.'),
+h(Reveal,{},
+GlassCard('max-w-lg mx-auto text-center',
+h('div',{className:'w-16 h-16 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center mx-auto mb-6'},
+h('i',{className:'fas fa-graduation-cap text-2xl text-emerald-400'})),
+h('h3',{className:'text-xl font-bold text-white font-display mb-2'},'Bachelor of Engineering'),
+h('p',{className:'text-emerald-400 font-medium mb-1'},'Computer Science Engineering'),
+h('p',{className:'text-gray-400 text-sm mb-4'},'(Artificial Intelligence & Machine Learning)'),
+h('div',{className:'inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-gray-300 text-sm'},
+h('i',{className:'fas fa-calendar-alt text-emerald-400'}),'Expected Graduation: 2027'),
+h('p',{className:'text-gray-500 text-sm mt-4'},'VSB Engineering College, Karur')
+))
+));
+}
+
+/* ===== CERTIFICATIONS ===== */
+function Certifications(){
+var certs=[
+{title:'Android Application Development',icon:'fa-brands fa-android',color:'text-emerald-400 bg-emerald-500/10 border-emerald-500/20'},
+{title:'Web Development Internship',icon:'fa-solid fa-code',color:'text-cyan-400 bg-cyan-500/10 border-cyan-500/20'},
+{title:'Arduino Robotics Workshop',icon:'fa-solid fa-robot',color:'text-amber-400 bg-amber-500/10 border-amber-500/20'},
+{title:'Machine Learning Certifications',icon:'fa-solid fa-brain',color:'text-rose-400 bg-rose-500/10 border-rose-500/20'}
+];
+return SectionWrap('certifications','bg-gray-950',
+h('div',{className:'max-w-6xl mx-auto px-4 sm:px-6'},
+SectionHead('Certifications','Credentials & Training','Professional certifications and workshops completed.'),
+h('div',{className:'grid sm:grid-cols-2 lg:grid-cols-4 gap-6'},
+certs.map(function(c,i){
+return h(Reveal,{key:i,delay:i*0.1,className:'glass rounded-2xl p-6 text-center hover:-translate-y-2 transition-all duration-300 group'},
+h('div',{className:'w-14 h-14 rounded-xl border flex items-center justify-center mx-auto mb-4 '+c.color},
+h('i',{className:c.icon+' text-xl'})),
+h('h3',{className:'text-white font-semibold font-display group-hover:text-emerald-400 transition-colors'},c.title))
+})))
+);
+}
+
+/* ===== ACHIEVEMENTS ===== */
+function Achievements(){
+var items=[
+{text:'Developed multiple Full Stack Projects',icon:'fa-solid fa-rocket'},
+{text:'Built AI-based Resume Analyzer',icon:'fa-solid fa-brain'},
+{text:'Experience with REST APIs',icon:'fa-solid fa-plug'},
+{text:'Hands-on Docker Deployment',icon:'fa-brands fa-docker'},
+{text:'Strong Java and Spring Boot Development',icon:'fa-brands fa-java'}
+];
+return SectionWrap('achievements','bg-gradient-to-b from-gray-950 to-gray-900/50',
+h('div',{className:'max-w-4xl mx-auto px-4 sm:px-6'},
+SectionHead('Achievements','Milestones Reached','Key accomplishments in my development journey.'),
+h('div',{className:'space-y-4'},
+items.map(function(a,i){
+return h(Reveal,{key:i,delay:i*0.08,className:'glass rounded-xl p-5 flex items-center gap-4 hover:border-emerald-500/20 transition-all group'},
+h('div',{className:'w-10 h-10 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center flex-shrink-0 group-hover:bg-emerald-500/20 transition-colors'},
+h('i',{className:a.icon+' text-emerald-400 text-sm'})),
+h('p',{className:'text-gray-300 font-medium'},a.text))
+})))
+);
+}
+
+/* ===== TIMELINE ===== */
+function Timeline(){
+return SectionWrap('timeline','bg-gray-950',
+h('div',{className:'max-w-4xl mx-auto px-4 sm:px-6'},
+SectionHead('Timeline','My Journey','Key milestones in my learning and development path.'),
+h('div',{className:'relative'},
+h('div',{className:'timeline-line'}),
+TIMELINE_DATA.map(function(t,i){
+var isLeft=i%2===0;
+return h(Reveal,{key:i,delay:i*0.1,className:'relative flex items-center mb-12 last:mb-0 '+(isLeft?'md:flex-row':'md:flex-row-reverse')},
+h('div',{className:'hidden md:block w-1/2 '+(isLeft?'pr-12 text-right':'pl-12')},
+h(GlassCard,'hover:border-emerald-500/20 transition-all',
+h('div',{className:'text-emerald-400 text-sm font-bold mb-2 font-display'},t.year),
+h('h3',{className:'text-white font-bold font-display mb-2'},t.title),
+h('p',{className:'text-gray-400 text-sm leading-relaxed'},t.desc))),
+h('div',{className:'absolute left-1/2 -translate-x-1/2 w-5 h-5 rounded-full bg-emerald-500 border-4 border-gray-950 z-10 hidden md:block shadow-lg shadow-emerald-500/30'}),
+h('div',{className:'md:hidden ml-12'},
+h(GlassCard,'hover:border-emerald-500/20 transition-all',
+h('div',{className:'text-emerald-400 text-sm font-bold mb-2 font-display'},t.year),
+h('h3',{className:'text-white font-bold font-display mb-2'},t.title),
+h('p',{className:'text-gray-400 text-sm leading-relaxed'},t.desc)))
+)}))
+));
+}
+
+/* ===== EXPERIENCE PLACEHOLDER ===== */
+function Experience(){
+return SectionWrap('experience','bg-gradient-to-b from-gray-950 to-gray-900/50',
+h('div',{className:'max-w-4xl mx-auto px-4 sm:px-6'},
+SectionHead('Experience','Professional Journey','Internships and work experience.'),
+h(Reveal,{},
+h('div',{className:'grid md:grid-cols-2 gap-6'},
+[{role:'Machine Learning Intern',company:'Intrainz',period:'Oct 2024 - Dec 2024',desc:'Built an Online Payment Fraud Detection system using Python and scikit-learn, achieving ~94% accuracy.',icon:'fa-solid fa-chart-line',color:'text-emerald-400 bg-emerald-500/10'},
+{role:'Web Developer Intern',company:'NSIC',period:'Jan 2025 - Feb 2025',desc:'Built responsive web pages using HTML, CSS, and JavaScript. Implemented front-end and back-end functionality with testing and debugging.',icon:'fa-solid fa-globe',color:'text-cyan-400 bg-cyan-500/10'}
+].map(function(exp,i){
+return h(GlassCard,'hover:-translate-y-1 transition-all duration-300 group',
+h('div',{className:'flex items-center gap-3 mb-4'},
+h('div',{className:'w-10 h-10 rounded-lg flex items-center justify-center '+exp.color},h('i',{className:exp.icon})),
+h('div',null,h('h3',{className:'text-white font-bold font-display group-hover:text-emerald-400 transition-colors'},exp.role),h('p',{className:'text-gray-500 text-sm'},exp.company))),
+h('div',{className:'inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 text-gray-400 text-xs mb-3'},
+h('i',{className:'fas fa-calendar-alt'}),exp.period),
+h('p',{className:'text-gray-400 text-sm leading-relaxed'},exp.desc))
+})),
+h('div',{className:'mt-8 text-center'},
+h('p',{className:'text-gray-500 text-sm italic'},'More experiences coming soon as I continue to grow in my career.')))
+));
+}
+
+/* ===== GITHUB GRAPH ===== */
+function GitHubGraph(){
+var cells=[];
+for(var i=0;i<7;i++){for(var j=0;j<20;j++){
+var r=Math.random();var cls='contrib-cell ';
+if(r<.3)cls+='bg-gray-800';else if(r<.5)cls+='bg-emerald-900';else if(r<.7)cls+='bg-emerald-700';else if(r<.85)cls+='bg-emerald-500';else cls+='bg-emerald-400';
+cells.push(h('div',{key:i+'-'+j,className:cls,title:j+' contributions'}))
+}}
+return h('section',{className:'py-16 bg-gray-950'},
+h('div',{className:'max-w-5xl mx-auto px-4 sm:px-6'},
+h(Reveal,{},
+h('div',{className:'glass rounded-2xl p-6 md:p-8'},
+h('div',{className:'flex items-center justify-between mb-6'},
+h('h3',{className:'text-white font-bold font-display'},h('i',{className:'fa-brands fa-github mr-2 text-gray-400'}),'Coding Activity'),
+h('span',{className:'text-gray-500 text-sm'},'Last 20 weeks')),
+h('div',{className:'flex gap-[3px] overflow-x-auto pb-2'},
+h('div',{className:'grid grid-rows-7 gap-[3px] flex-shrink-0'},cells)))
+)))
+);
+}
+
+/* ===== TESTIMONIALS ===== */
+function Testimonials(){
+var data=[
+{name:'Professor at VSB College',text:'Joshwa demonstrated exceptional problem-solving skills and a strong work ethic during his coursework. His projects consistently exceeded expectations.',avatar:'fa-solid fa-user-tie'},
+{name:'Team Lead at Intrainz',text:'During his ML internship, Joshwa delivered a fraud detection model with impressive accuracy. He is a quick learner and a great team player.',avatar:'fa-solid fa-user-shield'},
+{name:'Fellow Developer',text:'Working with Joshwa on college projects was a great experience. His full stack knowledge and attention to detail are remarkable for a student.',avatar:'fa-solid fa-user-astronaut'}
+];
+return h('section',{className:'py-20 bg-gradient-to-b from-gray-950 to-gray-900/50'},
+h('div',{className:'max-w-6xl mx-auto px-4 sm:px-6'},
+SectionHead('Testimonials','What People Say','Feedback from mentors and colleagues.'),
+h('div',{className:'grid md:grid-cols-3 gap-6'},
+data.map(function(t,i){
+return h(Reveal,{key:i,delay:i*0.1,className:'glass rounded-2xl p-6 hover:-translate-y-1 transition-all duration-300'},
+h('div',{className:'flex items-center gap-3 mb-4'},
+h('div',{className:'w-10 h-10 rounded-full bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center'},
+h('i',{className:t.avatar+' text-emerald-400 text-sm'})),
+h('div',null,h('p',{className:'text-white font-semibold text-sm'},t.name),h('p',{className:'text-gray-500 text-xs'}),'Colleague'))
+,
+h('div',{className:'flex gap-1 mb-3'},
+[1,2,3,4,5].map(function(s){return h('i',{key:s,className:'fas fa-star text-amber-400 text-xs'})})),
+h('p',{className:'text-gray-400 text-sm leading-relaxed italic'},'"'+t.text+'"'))
+})))
+));
+}
+
+/* ===== BLOGS ===== */
+function Blogs(){
+var posts=[
+{title:'Building a Full Stack App with Spring Boot & React',date:'Jan 2025',tag:'Full Stack',desc:'A step-by-step guide to building and deploying a full stack application using Spring Boot, React, MySQL, and Docker.'},
+{title:'AI-Powered Resume Screening with Google Gemini',date:'Dec 2024',tag:'AI/ML',desc:'How I built HireSense AI — an intelligent resume screening platform using Gemini API and vector databases.'},
+{title:'Fraud Detection with Machine Learning',date:'Nov 2024',tag:'Machine Learning',desc:'Exploring data preprocessing, feature engineering, and model evaluation for payment fraud detection.'}
+];
+return h('section',{className:'py-20 bg-gray-950'},
+h('div',{className:'max-w-6xl mx-auto px-4 sm:px-6'},
+SectionHead('Blog','Latest Articles','Thoughts on development, AI, and technology.'),
+h('div',{className:'grid md:grid-cols-3 gap-6'},
+posts.map(function(p,i){
+return h(Reveal,{key:i,delay:i*0.1,className:'glass rounded-2xl overflow-hidden hover:-translate-y-1 transition-all duration-300 group cursor-pointer'},
+h('div',{className:'h-40 bg-gradient-to-br from-emerald-500/10 via-cyan-500/5 to-amber-500/10 flex items-center justify-center'},
+h('i',{className:'fas fa-newspaper text-3xl text-emerald-400/40 group-hover:text-emerald-400/70 transition-colors'})),
+h('div',{className:'p-5'},
+h('div',{className:'flex items-center gap-3 mb-3'},
+h('span',{className:'px-2.5 py-0.5 text-xs font-medium rounded-md bg-emerald-500/10 text-emerald-400 border border-emerald-500/20'},p.tag),
+h('span',{className:'text-gray-500 text-xs'},p.date)),
+h('h3',{className:'text-white font-bold font-display mb-2 group-hover:text-emerald-400 transition-colors text-sm'},p.title),
+h('p',{className:'text-gray-400 text-xs leading-relaxed line-clamp-2'},p.desc)))
+})))
+));
+}
+
+/* ===== FAQ ===== */
+function FAQ(){
+var os=useState(-1),open=os[0],setOpen=os[1];
+return SectionWrap('faq','bg-gradient-to-b from-gray-950 to-gray-900/50',
+h('div',{className:'max-w-3xl mx-auto px-4 sm:px-6'},
+SectionHead('FAQ','Frequently Asked Questions','Common questions about my work and availability.'),
+h('div',{className:'space-y-3'},
+FAQ_DATA.map(function(f,i){
+var isOpen=open===i;
+return h(Reveal,{key:i,delay:i*0.05},
+h('div',{className:'glass rounded-xl overflow-hidden transition-all '+(isOpen?'border-emerald-500/20':'')},
+h('button',{className:'w-full flex items-center justify-between p-5 text-left focus:outline-none',
+onClick:function(){setOpen(isOpen?-1:i)}},
+h('span',{className:'text-white font-medium pr-4'},f.q),
+h('i',{className:'fas fa-chevron-down text-emerald-400 text-sm transition-transform duration-300 '+(isOpen?'rotate-180':'')})),
+isOpen?h('div',{className:'px-5 pb-5'},
+h('div',{className:'h-px bg-white/5 mb-4'}),
+h('p',{className:'text-gray-400 text-sm leading-relaxed'},f.a)):null
+))
+})))
+);
+}
+
+/* ===== CONTACT ===== */
+function Contact(){
+var ns=useState(''),name=ns[0],setName=ns[1];
+var es=useState(''),email=es[0],setEmail=es[1];
+var ss=useState(''),subject=ss[0],setSubject=ss[1];
+var ms=useState(''),message=ms[0],setMessage=ms[1];
+var errs=useState({}),errors=errs[0],setErrors=errs[1];
+var suc=useState(false),success=suc[0],setSuccess=suc[1];
+function validate(){
+var e={};
+if(!name.trim())e.name='Name is required';
+if(!email.trim())e.email='Email is required';
+else if(!/^\S+@\S+\.\S+$/.test(email))e.email='Please enter a valid email';
+if(!subject.trim())e.subject='Subject is required';
+if(!message.trim())e.message='Message is required';
+else if(message.trim().length<10)e.message='Message must be at least 10 characters';
+return e;
+}
+function handleSubmit(e){
+e.preventDefault();var v=validate();setErrors(v);
+if(Object.keys(v).length===0){setSuccess(true);setName('');setEmail('');setSubject('');setMessage('');
+setTimeout(function(){setSuccess(false)},3000)}
+}
+function fieldError(field){
+if(!errors[field])return null;
+return h('p',{className:'text-rose-400 text-xs mt-1'},errors[field]);
+}
+var inputCls='w-full px-4 py-3 rounded-xl bg-white/5 border text-white text-sm placeholder-gray-500 focus:outline-none focus:border-emerald-500/50 focus:ring-1 focus:ring-emerald-500/20 transition-all ';
+var inputErr=inputCls+'border-rose-500/50';
+var inputOk=inputCls+'border-white/10';
+return SectionWrap('contact','bg-gray-950',
+h('div',{className:'max-w-6xl mx-auto px-4 sm:px-6'},
+SectionHead('Contact','Get In Touch','Have a question or opportunity? I would love to hear from you.'),
+h('div',{className:'grid lg:grid-cols-5 gap-12'},
+h('div',{className:'lg:col-span-3'},
+h('form',{onSubmit:handleSubmit,className:'space-y-5'},
+h('div',null,
+h('input',{type:'text',placeholder:'Your Name',value:name,onChange:function(e){setName(e.target.value)},className:errors.name?inputErr:inputOk}),
+fieldError('name')),
+h('div',null,
+h('input',{type:'email',placeholder:'Your Email',value:email,onChange:function(e){setEmail(e.target.value)},className:errors.email?inputErr:inputOk}),
+fieldError('email')),
+h('div',null,
+h('input',{type:'text',placeholder:'Subject',value:subject,onChange:function(e){setSubject(e.target.value)},className:errors.subject?inputErr:inputOk}),
+fieldError('subject')),
+h('div',null,
+h('textarea',{rows:5,placeholder:'Your Message',value:message,onChange:function(e){setMessage(e.target.value)},className:(errors.message?inputErr:inputOk)+'resize-none'}),
+fieldError('message')),
+h('button',{type:'submit',className:'w-full py-3.5 bg-emerald-500 hover:bg-emerald-400 text-gray-950 font-semibold rounded-xl transition-all hover:shadow-lg hover:shadow-emerald-500/20 flex items-center justify-center gap-2'},
+h('i',{className:'fas fa-paper-plane'}),'Send Message'),
+success?h('div',{className:'mt-4 p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-sm text-center flex items-center justify-center gap-2'},
+h('i',{className:'fas fa-check-circle'}),'Message sent successfully!'):null
+)),
+h('div',{className:'lg:col-span-2'},
+h('div',{className:'space-y-6'},
+[{icon:'fa-solid fa-envelope',label:'Email',value:'joshwavsb@gmail.com',href:'mailto:joshwavsb@gmail.com'},
+{icon:'fa-brands fa-github',label:'GitHub',value:'JoshwaBaskar',href:'https://github.com/JoshwaBaskar'},
+{icon:'fa-brands fa-linkedin-in',label:'LinkedIn',value:'joshwa-b-322967291',href:'https://linkedin.com/in/joshwa-b-322967291'},
+{icon:'fa-solid fa-location-dot',label:'Location',value:'Kovilpatti, Tamil Nadu, India',href:null}
+].map(function(c,i){
+return h(Reveal,{key:i,delay:i*0.1,className:'glass rounded-xl p-5 flex items-center gap-4 hover:border-emerald-500/20 transition-all group'},
+h('div',{className:'w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center flex-shrink-0 group-hover:bg-emerald-500/20 transition-colors'},
+h('i',{className:c.icon+' text-emerald-400'})),
+h('div',null,
+h('p',{className:'text-gray-500 text-xs uppercase tracking-wider mb-0.5'},c.label),
+c.href?h('a',{href:c.href,target:c.href.startsWith('http')?'_blank':undefined,rel:c.href.startsWith('http')?'noopener noreferrer':undefined,className:'text-white font-medium text-sm hover:text-emerald-400 transition-colors'},c.value):
+h('p',{className:'text-white font-medium text-sm'},c.value)
+))
+}))
+)))
+);
+}
+
+/* ===== FOOTER ===== */
+function Footer(){
+var links=[
+{label:'Home',href:'#home'},{label:'About',href:'#about'},{label:'Skills',href:'#skills'},
+{label:'Projects',href:'#projects'},{label:'Contact',href:'#contact'}
+];
+return h('footer',{className:'border-t border-white/5 py-12 bg-gray-950'},
+h('div',{className:'max-w-6xl mx-auto px-4 sm:px-6'},
+h('div',{className:'flex flex-col md:flex-row items-center justify-between gap-6 mb-8'},
+h('a',{href:'#home',className:'text-xl font-bold font-display text-white',onClick:function(e){e.preventDefault();document.getElementById('home').scrollIntoView({behavior:'smooth'})}},
+h('span',{className:'text-emerald-400'},'J'),'oshwa B'),
+h('div',{className:'flex flex-wrap justify-center gap-6'},
+links.map(function(l,i){return h('a',{key:i,href:l.href,className:'text-gray-400 text-sm hover:text-emerald-400 transition-colors',onClick:function(e){e.preventDefault();document.getElementById(l.href.slice(1)).scrollIntoView({behavior:'smooth'})}},l.label)})),
+h('div',{className:'flex gap-3'},
+SOCIAL_LINKS.map(function(s,i){return h('a',{key:i,href:s.href,target:'_blank',rel:'noopener noreferrer','aria-label':s.label,className:'w-9 h-9 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-emerald-400 hover:border-emerald-500/30 transition-all text-sm'},h('i',{className:s.icon}))}))),
+h('div',{className:'text-center text-gray-600 text-xs pt-8 border-t border-white/5'},
+h('p',null,'Designed & Built by Joshwa B. All rights reserved ',new Date().getFullYear(),'.'))
+));
+}
+
+/* ===== APP ===== */
+function App(){
+return h(React.Fragment,null,
+h(Navbar),
+h('main',null,
+h(Hero),
+h(About),
+h(Skills),
+h(Stats),
+h(Projects),
+h(Education),
+h(Certifications),
+h(Achievements),
+h(Timeline),
+h(Experience),
+h(GitHubGraph),
+h(Testimonials),
+h(Blogs),
+h(FAQ),
+h(Contact)
+),
+h(Footer)
+);
+}
+
+/* ===== MOUNT ===== */
+var root=ReactDOM.createRoot(document.getElementById('root'));
+root.render(h(App));
+})();
+</script>
+</body>
+</html>

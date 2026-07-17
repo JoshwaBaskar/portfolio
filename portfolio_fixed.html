@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Portfolio - Debug Build</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>body{background:#030712;color:#fff;font-family:Space Grotesk, sans-serif;margin:0;padding:24px}</style>
+</head>
+<body>
+  <div id="root"></div>
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+  <script>
+  (function(){
+    'use strict';
+    const h = React.createElement;
+    function App(){
+      return h('div',{style:{maxWidth:900,margin:'40px auto',lineHeight:1.5}},
+        h('h1',{style:{fontSize:36,marginBottom:8}},'Joshwa B — Portfolio (debug)'),
+        h('p',null,'This is a debug build to confirm the page renders. The original file remains unchanged.'),
+        h('ul',null,
+          h('li',null,'React and ReactDOM loaded'),
+          h('li',null,'Basic UI rendering works'),
+          h('li',null,'Open the original ', h('code',null,'portfolio.html'), ' to continue debugging')
+        )
+      );
+    }
+    ReactDOM.createRoot(document.getElementById('root')).render(h(App));
+  })();
+  </script>
+</body>
+</html>
